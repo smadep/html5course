@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" ></script>
+<script>
+
+$(function(){
+    if (window.addEventListener) {
+      window.addEventListener("storage", handle_storage, false);
+    } else {
+      window.attachEvent("onstorage", handle_storage);
+    }
+    
+    $('.store').click(function(){
+        localStorage[$('#key').val()] = $('#value').val();
+        
+        output(localStorage[$('#key').val()]);
+            });
+            
+});
+
+function handle_storage(e){
+    output(e.key + ': ' + e.value);
+}
+    
+function output(message){
+    var output$ = $('#output');
+    output$.html(output$.html() + '<br / > ' + message);
+}
+    
+</script>
+<header>Local Storage</header>
+<input id="key" value="testkey"/>
+<input id="value" value="value" />
+<button class="store">Store</button>
+<div id="output">
+test
+</div>
+    
+</html>
